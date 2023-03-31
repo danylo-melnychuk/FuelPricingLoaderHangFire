@@ -55,7 +55,6 @@ RecurringJob.AddOrUpdate<IFuelPriceService>(
 	x => x.SavePrices(),
 	Cron.MinuteInterval(delay));
 
-BackgroundJob.Enqueue(() => Console.WriteLine("Hello from Hangfire!"));
 
 
 Console.ReadKey();
