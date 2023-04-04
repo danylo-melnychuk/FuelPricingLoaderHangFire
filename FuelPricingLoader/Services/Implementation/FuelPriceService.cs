@@ -41,6 +41,7 @@ public class FuelPriceService : IFuelPriceService
 		var actualPrices = prices.Response.Data
 			.Where(item => item.Value.HasValue 
 				&& item.Period.Date >= DateTime.UtcNow.Date.AddDays(_systemSettings.RetentionPeriodDays * -1).Date)
+            .GroupBy(x => x.Series).MinBy(x => x.Key)?
 			.ToList();
 
 		if (!actualPrices.Any())
